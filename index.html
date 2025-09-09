@@ -3,457 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025炫酷网站设计方案</title>
+    <title>小城臻选 - 桃山周边一小时送货到家</title>
     <script src="https://cdn.tailwindcss.com/3.3.3"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#fe3430',
+                        'primary-light': '#ff6b67',
+                        'primary-dark': '#d41c18'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f0f13;
-            color: #e0e0e0;
-            overflow-x: hidden;
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
         }
         
-        .cyberpunk-gradient {
-            background: linear-gradient(135deg, #00f7ff 0%, #ff00f7 50%, #00ff9d 100%);
-            background-size: 200% 200%;
-            animation: gradientBG 8s ease infinite;
+        .hero-gradient {
+            background: linear-gradient(135deg, #fff5f5 0%, #fff0f0 100%);
         }
         
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        .category-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
         
-        .glass-card {
-            background: rgba(15, 15, 19, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-        
-        .hover-glow:hover {
-            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        .category-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-code-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
         
-        .neon-text {
-            text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff;
+        .qr-code-container:hover {
+            transform: scale(1.03);
         }
         
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        .pulse {
+            animation: pulse 2s infinite;
         }
         
-        .floating {
-            animation: floating 6s ease-in-out infinite;
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(254, 52, 48, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(254, 52, 48, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(254, 52, 48, 0);
+            }
         }
         
-        @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-        
-        .section-title {
+        .nav-item {
             position: relative;
-            display: inline-block;
         }
         
-        .section-title:after {
+        .nav-item::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -2px;
             left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #fe3430;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item:hover::after {
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #00f7ff, #ff00f7);
-        }
-        
-        .tech-badge {
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-            background: rgba(0, 247, 255, 0.1);
-            border: 1px solid rgba(0, 247, 255, 0.3);
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        
-        .glass-button {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .glass-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
-    
-    <!-- 导航 -->
-    <nav class="fixed top-0 left-0 right-0 z-50 py-4 px-6 glass-card">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="text-2xl font-bold neon-text">
-                <i class="fas fa-code mr-2"></i>2025视觉实验室
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-store text-primary text-2xl mr-2"></i>
+                <span class="text-xl font-bold text-gray-800">小城臻选</span>
             </div>
             <div class="hidden md:flex space-x-8">
-                <a href="#styles" class="hover:text-cyan-300 transition-colors">视觉策略</a>
-                <a href="#tech" class="hover:text-cyan-300 transition-colors">技术实现</a>
-                <a href="#cases" class="hover:text-cyan-300 transition-colors">案例参考</a>
-                <a href="#innovations" class="hover:text-cyan-300 transition-colors">创新点</a>
+                <a href="#home" class="nav-item text-gray-600 hover:text-primary">首页</a>
+                <a href="#categories" class="nav-item text-gray-600 hover:text-primary">商品分类</a>
+                <a href="#service" class="nav-item text-gray-600 hover:text-primary">服务范围</a>
+                <a href="#app" class="nav-item text-gray-600 hover:text-primary">小程序</a>
             </div>
-            <button class="md:hidden text-xl" id="menuBtn">
-                <i class="fas fa-bars"></i>
+            <button class="md:hidden text-gray-600">
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
     </nav>
-    
-    <!-- 移动端菜单 -->
-    <div class="mobile-menu hidden md:hidden glass-card absolute top-16 right-6 w-64 py-4 rounded-lg" id="mobileMenu">
-        <a href="#styles" class="block px-6 py-2 hover:bg-gray-800">视觉策略</a>
-        <a href="#tech" class="block px-6 py-2 hover:bg-gray-800">技术实现</a>
-        <a href="#cases" class="block px-6 py-2 hover:bg-gray-800">案例参考</a>
-        <a href="#innovations" class="block px-6 py-2 hover:bg-gray-800">创新点</a>
-    </div>
-    
+
     <!-- 英雄区域 -->
-    <section class="min-h-screen flex items-center justify-center pt-20 px-6">
-        <div class="container mx-auto text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 neon-text">2025网站设计趋势</h1>
-            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">融合AI、WebGPU与玻璃拟态的前沿设计解决方案</p>
-            <div class="flex justify-center gap-4">
-                <a href="#styles" class="px-8 py-3 glass-button text-white rounded-full hover-glow">
-                    探索趋势
+    <section id="home" class="hero-gradient py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">桃山周边一小时送货到家！</h1>
+                <p class="text-xl md:text-2xl text-primary font-medium mb-8">微信下单，一小时达</p>
+                <p class="text-gray-600 mb-8 text-lg">小城臻选是桃山周边居民的线上超市，为您提供新鲜优质的本地商品和便捷的配送服务。</p>
+                <a href="#app" class="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-flex items-center">
+                    立即体验 <i class="fas fa-arrow-right ml-2"></i>
                 </a>
-                <a href="#cases" class="px-8 py-3 glass-button text-white rounded-full hover-glow">
-                    查看案例
-                </a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://s.coze.cn/image/W1bPFyyc8XM/" alt="小城臻选服务场景" class="rounded-xl shadow-lg w-full max-w-md">
             </div>
         </div>
     </section>
-    
-    <!-- 视觉设计策略 -->
-    <section id="styles" class="py-20 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">2025视觉设计策略</h2>
-            
-            <div class="glass-card rounded-xl p-8 mb-20 hover-glow">
-                <div class="flex flex-col md:flex-row items-center mb-10">
-                    <div class="w-full md:w-1/3 mb-8 md:mb-0">
-                        <div class="cyberpunk-gradient h-64 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-robot text-6xl text-white"></i>
-                        </div>
+
+    <!-- 商品分类 -->
+    <section id="categories" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">商品分类</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- 时令水果 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-40 bg-red-50 flex items-center justify-center">
+                        <img src="https://s.coze.cn/image/8vAS1EeAZ3A/" alt="时令水果" class="h-full w-full object-cover">
                     </div>
-                    <div class="w-full md:w-2/3 md:pl-10">
-                        <h3 class="text-2xl font-bold mb-4 neon-text">赛博朋克未来感</h3>
-                        <div class="mb-6">
-                            <h4 class="font-semibold mb-2">配色系统</h4>
-                            <p>霓虹蓝(#00f7ff)、荧光粉(#ff00f7)、电子绿(#00ff9d)为主色调，搭配深色背景(#0f0f13)增强对比</p>
-                        </div>
-                        <div class="mb-6">
-                            <h4 class="font-semibold mb-2">排版层次</h4>
-                            <p>未来感无衬线字体，超大标题+细体正文，文字边缘发光效果增强科技感</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2">核心元素</h4>
-                            <p>全息投影效果、数据流可视化、霓虹灯管装饰、故障艺术(Glitch Effect)</p>
-                        </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">时令水果</h3>
+                        <p class="text-gray-600 text-sm">新鲜采摘，产地直供</p>
                     </div>
-                </div>
-            </div>
-            
-            <div class="glass-card rounded-xl p-8 mb-20 hover-glow">
-                <div class="flex flex-col md:flex-row items-center mb-10">
-                    <div class="w-full md:w-1/3 mb-8 md:mb-0">
-                        <div class="glass-morphism h-64 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-wine-glass-alt text-6xl text-white"></i>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-2/3 md:pl-10">
-                        <h3 class="text-2xl font-bold mb-4">极简玻璃拟态</h3>
-                        <div class="mb-6">
-                            <h4 class="font-semibold mb-2">配色系统</h4>
-                            <p>半透明背景(rgba(255,255,255,0.1))搭配柔和光效，微妙光影变化增强层次感</p>
-                        </div>
-                        <div class="mb-6">
-                            <h4 class="font-semibold mb-2">排版层次</h4>
-                            <p>超大留白，极细字体(100-300字重)，不对称但平衡的布局</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2">核心元素</h4>
-                            <p>玻璃态气泡UI元素、空间过渡动画、微妙的视差滚动、几何形状的动态变形</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="glass-card rounded-xl p-8 hover-glow">
-                <div class="flex flex-col md:flex-row items-center mb-10">
-                    <div class="w-full md:w-1/3 mb-8 md:mb-0">
-                        <div class="bg-gradient-to-br from-purple-900 to-blue-900 h-64 rounded-lg flex items-center justify-center">
-                            <i class="fas fa-cube text-6xl text-white"></i>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-2/3 md:pl-10">
-                        <h3 class="text-2xl font-bold mb-4">沉浸式3D空间</h3>
-                        <div class="mb-6">
-                            <h4 class="font-semibold mb-2">配色系统</h4>
-                            <p>深色背景(#121212)搭配柔和光效(#4facfe, #00f2fe)，营造空间感</p>
-                        </div>
-                        <div class="mb-6">
-                            <h4 class="font-semibold mb-2">排版层次</h4>
-                            <p>悬浮文字效果，根据3D场景深度调整字体大小和透明度</p>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold mb-2">核心元素</h4>
-                            <p>WebGPU渲染的3D场景、第一人称视角导航、物理光照效果、环境感知渲染</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 技术实现路径 -->
-    <section id="tech" class="py-20 px-6 bg-gray-900">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">2025技术实现路径</h2>
-            
-            <div class="glass-card rounded-xl p-8 mb-10 hover-glow">
-                <h3 class="text-2xl font-bold mb-6">前沿技术栈</h3>
-                <div class="flex flex-wrap mb-8">
-                    <span class="tech-badge"><i class="fab fa-js mr-1"></i> WebGPU渲染</span>
-                    <span class="tech-badge"><i class="fas fa-brain mr-1"></i> TensorFlow.js</span>
-                    <span class="tech-badge"><i class="fas fa-film mr-1"></i> Safari滚动动画API</span>
-                    <span class="tech-badge"><i class="fas fa-microchip mr-1"></i> WebAssembly</span>
-                    <span class="tech-badge"><i class="fas fa-robot mr-1"></i> AI设计工具</span>
-                    <span class="tech-badge"><i class="fas fa-vr-cardboard mr-1"></i> WebXR</span>
-                    <span class="tech-badge"><i class="fas fa-cloud mr-1"></i> 云渲染</span>
-                    <span class="tech-badge"><i class="fab fa-unreal mr-1"></i> Unreal Engine</span>
                 </div>
                 
-                <h3 class="text-2xl font-bold mb-6">技术突破点</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-800 p-4 rounded-lg">
-                        <h4 class="font-bold mb-2">AI增强设计工具</h4>
-                        <p>TensorFlow.js实现情绪识别驱动色彩变化，自然语言指令调整3D元素参数</p>
+                <!-- 田园时蔬 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-40 bg-red-50 flex items-center justify-center">
+                        <img src="https://s.coze.cn/image/YdMflNw2KKo/" alt="田园时蔬" class="h-full w-full object-cover">
                     </div>
-                    <div class="bg-gray-800 p-4 rounded-lg">
-                        <h4 class="font-bold mb-2">WebGPU加速</h4>
-                        <p>替代传统WebGL，提升3D渲染性能50%以上，支持更复杂的光影效果</p>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">田园时蔬</h3>
+                        <p class="text-gray-600 text-sm">农家种植，绿色健康</p>
                     </div>
-                    <div class="bg-gray-800 p-4 rounded-lg">
-                        <h4 class="font-bold mb-2">滚动驱动动画</h4>
-                        <p>应用Apple Safari最新API，实现流畅的滚动触发动画序列</p>
+                </div>
+                
+                <!-- 酒水乳品 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-40 bg-red-50 flex items-center justify-center">
+                        <img src="https://s.coze.cn/image/9essPokyfzs/" alt="酒水乳品" class="h-full w-full object-cover">
                     </div>
-                    <div class="bg-gray-800 p-4 rounded-lg">
-                        <h4 class="font-bold mb-2">环境感知渲染</h4>
-                        <p>通过设备光线传感器自动切换动态光影效果，增强沉浸感</p>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">酒水乳品</h3>
+                        <p class="text-gray-600 text-sm">品质保证，营养丰富</p>
+                    </div>
+                </div>
+                
+                <!-- 桃山特色 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-40 bg-red-50 flex items-center justify-center">
+                        <img src="https://s.coze.cn/image/UFBraG5iHhM/" alt="桃山特色" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">桃山特色</h3>
+                        <p class="text-gray-600 text-sm">地道风味，本地精选</p>
+                    </div>
+                </div>
+                
+                <!-- 粮油调味 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-40 bg-red-50 flex items-center justify-center">
+                        <img src="https://s.coze.cn/image/C0SsQ4s2bRM/" alt="粮油调味" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">粮油调味</h3>
+                        <p class="text-gray-600 text-sm">厨房必备，品质之选</p>
+                    </div>
+                </div>
+                
+                <!-- 休闲零食 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-40 bg-red-50 flex items-center justify-center">
+                        <img src="https://s.coze.cn/image/wuCzmqLDreM/" alt="休闲零食" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">休闲零食</h3>
+                        <p class="text-gray-600 text-sm">美味可口，休闲时光</p>
+                    </div>
+                </div>
+                
+                <!-- 个护家清 -->
+                <div class="category-card bg-white rounded-xl overflow-hidden">
+                    <div class="h-40 bg-red-50 flex items-center justify-center">
+                        <img src="https://s.coze.cn/image/8DLgmapqrvg/" alt="个护家清" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">个护家清</h3>
+                        <p class="text-gray-600 text-sm">清洁护理，居家必备</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- 案例参考 -->
-    <section id="cases" class="py-20 px-6">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">2025前沿案例</h2>
-            
-            <div class="glass-card rounded-xl p-8 mb-10 hover-glow">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Arina's story -->
-                    <div class="glass-morphism p-6 rounded-lg">
-                        <div class="h-40 rounded-lg mb-4 overflow-hidden">
-                            <img src="https://s.coze.cn/image/s97lVu24ztI/" alt="Arina's story案例" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold mb-2">Arina's story</h4>
-                        <p class="text-sm text-gray-300 mb-2">ISD Group - 结合Unreal Engine、云渲染和AI编舞的沉浸式叙事网站</p>
-                        <div class="flex flex-wrap mt-2">
-                            <span class="tech-badge text-xs">Unreal Engine</span>
-                            <span class="tech-badge text-xs">云渲染</span>
-                            <span class="tech-badge text-xs">AI编舞</span>
+
+    <!-- 服务范围 -->
+    <section id="service" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">服务范围</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-4">桃山周边一小时配送</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span class="text-gray-700">覆盖桃山城区及周边10公里范围</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span class="text-gray-700">每日8:00-22:00不间断服务</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span class="text-gray-700">专业配送团队，准时送达</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span class="text-gray-700">生鲜商品全程冷链保鲜</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md:w-1/2 bg-red-50 flex items-center justify-center p-8">
+                        <img src="https://s.coze.cn/image/AziqIJJ0eKI/" alt="服务范围地图" class="rounded-lg shadow-sm w-full">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 小程序入口 -->
+    <section id="app" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl p-8 md:p-12 shadow-sm">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <h2 class="text-3xl font-bold text-gray-800 mb-4">微信小程序体验</h2>
+                        <p class="text-gray-600 mb-6">扫描下方二维码，立即体验“小城臻选”微信小程序，享受一小时送货到家的便捷服务。</p>
+                        <div class="flex items-center">
+                            <i class="fas fa-mobile-alt text-primary text-2xl mr-3"></i>
+                            <span class="text-gray-700 font-medium">微信搜索"小城臻选"也可找到我们</span>
                         </div>
                     </div>
-                    
-                    <!-- Nike Air Imagination -->
-                    <div class="glass-morphism p-6 rounded-lg">
-                        <div class="h-40 rounded-lg mb-4 overflow-hidden">
-                            <img src="https://s.coze.cn/image/buZjb3nKJ3A/" alt="Nike Air Imagination案例" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold mb-2">Nike Air Imagination</h4>
-                        <p class="text-sm text-gray-300 mb-2">AI驱动的自定义鞋款设计工具，实现文本到3D模型的实时生成</p>
-                        <div class="flex flex-wrap mt-2">
-                            <span class="tech-badge text-xs">AI生成</span>
-                            <span class="tech-badge text-xs">3D建模</span>
-                            <span class="tech-badge text-xs">实时渲染</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Apple Liquid Glass -->
-                    <div class="glass-morphism p-6 rounded-lg">
-                        <div class="h-40 rounded-lg mb-4 overflow-hidden">
-                            <img src="https://s.coze.cn/image/3MK6T7L6u5k/" alt="Apple Liquid Glass案例" class="w-full h-full object-cover">
-                        </div>
-                        <h4 class="font-bold mb-2">Apple Liquid Glass</h4>
-                        <p class="text-sm text-gray-300 mb-2">玻璃态气泡UI元素与空间过渡动画的全新设计语言</p>
-                        <div class="flex flex-wrap mt-2">
-                            <span class="tech-badge text-xs">玻璃拟态</span>
-                            <span class="tech-badge text-xs">空间动画</span>
-                            <span class="tech-badge text-xs">微交互</span>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="qr-code-container p-6 pulse">
+                            <div class="text-center">
+                                <div class="bg-white p-4 rounded-lg inline-block">
+                                    <img src="./code.png" alt="小城臻选小程序二维码" class="w-48 h-48">
+                                </div>
+                                <p class="mt-4 text-gray-700 font-medium">扫码立即体验</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- 原创创新点 -->
-    <section id="innovations" class="py-20 px-6 bg-gray-900">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center section-title">原创创新点</h2>
-            
-            <div class="glass-card rounded-xl p-8 hover-glow">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-gradient-to-br from-cyan-500 to-blue-500 p-6 rounded-lg text-white">
-                        <h4 class="font-bold mb-2 text-lg">玻璃态空间导航</h4>
-                        <p>基于Apple Liquid Glass设计语言的层级菜单交互系统，实现流畅的空间过渡</p>
-                    </div>
-                    <div class="bg-gradient-to-br from-purple-500 to-pink-500 p-6 rounded-lg text-white">
-                        <h4 class="font-bold mb-2 text-lg">AI协作设计系统</h4>
-                        <p>允许用户通过自然语言指令实时调整3D元素参数，实现人机共创</p>
-                    </div>
-                    <div class="bg-gradient-to-br from-orange-500 to-red-500 p-6 rounded-lg text-white">
-                        <h4 class="font-bold mb-2 text-lg">环境感知渲染</h4>
-                        <p>根据设备光线传感器自动切换动态光影效果，增强全天候使用体验</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+
     <!-- 页脚 -->
-    <footer class="py-12 px-6 bg-gray-900 text-center">
-        <div class="container mx-auto">
-            <div class="text-2xl font-bold neon-text mb-6">
-                <i class="fas fa-code mr-2"></i>2025视觉实验室
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fas fa-store text-primary-light text-2xl mr-2"></i>
+                        <span class="text-xl font-bold">小城臻选</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">桃山周边一小时送货到家</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-300 hover:text-white transition">
+                        <i class="fab fa-weixin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-300 hover:text-white transition">
+                        <i class="fas fa-phone-alt text-xl"></i>
+                    </a>
+                </div>
             </div>
-            <p class="text-gray-500 mb-4">融合AI、WebGPU与玻璃拟态的前沿设计解决方案</p>
-            <p class="text-gray-500 text-sm">
-                © 2025 视觉实验室. 保留所有权利.
-                <br>
-                <span class="mt-1 block">页面内容，仅供参考</span>
-            </p>
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>© 2025 小城臻选 版权所有</p>
+                <p class="mt-2">created by <a href="https://qinyu.online" class="text-primary-light hover:underline">QY</a></p>
+                <p class="mt-1">鄂ICP备18000546号-2</p>
+            </div>
         </div>
     </footer>
-    
+
     <script>
-        // 粒子效果
-        document.addEventListener('DOMContentLoaded', function() {
-            // 移动端菜单切换
-            const menuBtn = document.getElementById('menuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-            
-            menuBtn.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-                menuBtn.querySelector('i').classList.toggle('fa-bars');
-                menuBtn.querySelector('i').classList.toggle('fa-times');
-            });
-            
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                        
-                        // 如果是移动端菜单，点击后隐藏
-                        if (!mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                            menuBtn.querySelector('i').classList.remove('fa-times');
-                            menuBtn.querySelector('i').classList.add('fa-bars');
-                        }
-                    }
-                });
-            });
-            
-            // 滚动动画
-            const animateOnScroll = function() {
-                const elements = document.querySelectorAll('.hover-glow');
-                
-                elements.forEach(element => {
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const screenPosition = window.innerHeight / 1.2;
-                    
-                    if (elementPosition < screenPosition) {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }
-                });
-            };
-            
-            // 初始化所有动画元素
-            const animatedElements = document.querySelectorAll('.hover-glow');
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'all 0.6s ease-out';
-            });
-            
-            window.addEventListener('scroll', animateOnScroll);
-            animateOnScroll(); // 初始触发
-            
-            // 粒子效果初始化
-            if (typeof particlesJS !== 'undefined') {
-                particlesJS('particles-js', {
-                    particles: {
-                        number: { value: 80, density: { enable: true, value_area: 800 } },
-                        color: { value: "#00f7ff" },
-                        shape: { type: "circle" },
-                        opacity: { value: 0.5, random: true },
-                        size: { value: 3, random: true },
-                        line_linked: { enable: true, distance: 150, color: "#00f7ff", opacity: 0.4, width: 1 },
-                        move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
-                    },
-                    interactivity: {
-                        detect_on: "canvas",
-                        events: {
-                            onhover: { enable: true, mode: "repulse" },
-                            onclick: { enable: true, mode: "push" },
-                            resize: true
-                        }
-                    }
-                });
+        // 移动端导航菜单切换
+        document.querySelector('button.md\\:hidden').addEventListener('click', function() {
+            const navItems = document.querySelector('.md\\:hidden + .md\\:flex');
+            if (navItems) {
+                navItems.classList.toggle('hidden');
             }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
