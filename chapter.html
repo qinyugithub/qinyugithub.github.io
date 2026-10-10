@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>章节学习 · Java 学习站</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="chapter">
+  <a class="skip-link" href="#article">跳到课件正文</a>
+  <header class="topbar compact">
+    <a class="brand" href="index.html"><span class="brand-mark">J</span><span><strong>Java 学习站</strong><small>从入门到精通</small></span></a>
+    <nav class="topnav" aria-label="主导航"><a class="active" href="index.html">课程</a><a href="resources.html">资料库</a></nav>
+    <div class="reader-actions"><button class="icon-button" id="chapter-search" aria-label="搜索课件">⌕</button><button class="icon-button theme-toggle" aria-label="切换深浅色模式">◐</button></div>
+  </header>
+  <div class="reading-progress"><i id="reading-progress"></i></div>
+
+  <main class="reader-shell">
+    <aside class="chapter-sidebar" aria-label="章节菜单">
+      <a class="back-link" href="index.html">← 返回课程地图</a>
+      <div class="sidebar-label">18 章课件</div>
+      <nav id="chapter-menu" class="chapter-menu" aria-busy="true"></nav>
+      <a class="sidebar-library" href="resources.html"><span>资料库</span><b>浏览全部附件 →</b></a>
+    </aside>
+
+    <article class="lesson" id="article" aria-busy="true">
+      <header class="lesson-header">
+        <div class="lesson-stage" id="lesson-stage">正在载入</div>
+        <h1 id="lesson-title">Java 课程</h1>
+        <p id="lesson-summary"></p>
+        <div class="lesson-meta"><span id="lesson-resource-count">— 项配套资料</span><span id="lesson-read-time">— 分钟阅读</span></div>
+      </header>
+      <div id="lesson-content" class="prose"><div class="loading-card">正在整理课件内容…</div></div>
+      <section class="chapter-resources" id="chapter-resources" hidden>
+        <div class="section-heading small"><div><p class="kicker">DOWNLOADS</p><h2>本章配套资料</h2></div><a id="all-chapter-resources" href="resources.html">查看本章全部资料 →</a></div>
+        <div id="featured-resources" class="resource-mini-grid"></div>
+      </section>
+      <nav class="lesson-pager" aria-label="章节翻页"><a id="prev-chapter" href="#">← 上一章</a><button id="mark-complete" class="button primary" type="button">标记为已学完</button><a id="next-chapter" href="#">下一章 →</a></nav>
+    </article>
+
+    <aside class="toc-sidebar" aria-label="本章目录">
+      <div class="toc-card"><div class="sidebar-label">本章目录</div><nav id="lesson-toc"></nav></div>
+      <button class="bookmark-current" id="bookmark-current" type="button">☆ 收藏当前位置</button>
+    </aside>
+  </main>
+
+  <dialog class="search-dialog" id="search-dialog">
+    <form method="dialog" class="search-head"><label for="global-search">搜索全部课件</label><button aria-label="关闭搜索">×</button></form>
+    <input id="global-search" type="search" placeholder="例如：多态、HashMap、线程同步…" autocomplete="off">
+    <div class="search-hint">输入关键词，检索章节标题与课件正文</div><div id="search-results" class="search-results"></div>
+  </dialog>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,14 +1,76 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
-    <title>小城臻选</title>
-    <script type="module" crossorigin src="./assets/index-CtBojkuA.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DyRY4_O5.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Java 从入门到精通学习站：18 章完整课件、电子教材、学习路线图与配套资料。">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>Java 从入门到精通 · 学习站</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Java 学习站首页">
+      <span class="brand-mark" aria-hidden="true">J</span>
+      <span><strong>Java 学习站</strong><small>从入门到精通</small></span>
+    </a>
+    <nav class="topnav" aria-label="主导航">
+      <a class="active" href="index.html">课程</a>
+      <a href="resources.html">资料库</a>
+      <a href="m/books/《Java从入门到精通(JDK17版)》_尚硅谷电子书.pdf" target="_blank">电子书</a>
+    </nav>
+    <button class="icon-button theme-toggle" type="button" aria-label="切换深浅色模式"><span aria-hidden="true">◐</span></button>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">JAVA · JDK 17 · SYSTEMATIC COURSE</p>
+        <h1>把 Java 学习，<br><em>变成一条清晰的路。</em></h1>
+        <p class="hero-lede">以 18 章原版课件为主线，电子教材、路线图、代码示例和全部配套资料集中查阅。按章学习，也可以直接搜索任何知识点。</p>
+        <div class="hero-actions">
+          <a class="button primary" id="continue-learning" href="chapter.html?id=01">从第 1 章开始</a>
+          <button class="button ghost" id="open-search" type="button">⌘K 搜索课件</button>
+        </div>
+      </div>
+      <div class="hero-panel" aria-label="学习概览">
+        <div class="java-glyph" aria-hidden="true"><span>{</span><b>J</b><span>}</span></div>
+        <div class="metric metric-a"><strong>18</strong><span>完整章节</span></div>
+        <div class="metric metric-b"><strong id="hero-files">—</strong><span>原始资料</span></div>
+        <div class="metric metric-c"><strong>3</strong><span>学习阶段</span></div>
+      </div>
+    </section>
+
+    <section class="dashboard-shell" aria-labelledby="course-heading">
+      <div class="section-heading">
+        <div><p class="kicker">COURSE MAP</p><h2 id="course-heading">课程地图</h2></div>
+        <div class="progress-summary" aria-live="polite"><span>总进度</span><strong id="progress-value">0%</strong><div class="progress-track"><i id="progress-bar"></i></div></div>
+      </div>
+      <div id="course-stages" class="course-stages" aria-busy="true"></div>
+    </section>
+
+    <section class="library-strip" aria-labelledby="library-heading">
+      <div class="library-intro"><p class="kicker">REFERENCE LIBRARY</p><h2 id="library-heading">随学随查的资料库</h2><p>课件之外的原版教材、路线图、演示文稿、脑图、源码与工具包，也都按原目录完整保留。</p></div>
+      <div class="library-cards">
+        <a class="library-card featured" href="m/books/《Java从入门到精通(JDK17版)》_尚硅谷电子书.pdf" target="_blank"><span>PDF</span><h3>JDK 17 电子教材</h3><p>完整电子书 · 在线阅读</p><b>打开 ↗</b></a>
+        <a class="library-card" href="m/Java从入门到精通-全程目录.pdf" target="_blank"><span>目录</span><h3>全程课程目录</h3><p>快速了解知识全景</p><b>查看 ↗</b></a>
+        <a class="library-card" href="resources.html?group=学习路线图"><span>XMIND</span><h3>学习路线图</h3><p>基础与中高级进阶路径</p><b>浏览 →</b></a>
+        <a class="library-card" href="resources.html"><span>ALL</span><h3>全部资料</h3><p id="library-file-count">正在统计…</p><b>进入资料库 →</b></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><p>Java 从入门到精通 · 个人学习资料站</p><a href="resources.html">查看完整资料清单</a></footer>
+
+  <dialog class="search-dialog" id="search-dialog">
+    <form method="dialog" class="search-head"><label for="global-search">搜索全部课件</label><button aria-label="关闭搜索">×</button></form>
+    <input id="global-search" type="search" placeholder="例如：多态、HashMap、线程同步…" autocomplete="off">
+    <div class="search-hint">输入关键词，检索章节标题与课件正文</div>
+    <div id="search-results" class="search-results"></div>
+  </dialog>
+  <script src="app.js" defer></script>
+</body>
 </html>

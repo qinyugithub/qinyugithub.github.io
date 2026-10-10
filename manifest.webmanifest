@@ -1,0 +1,9 @@
+{
+  "name": "Java 从入门到精通学习站",
+  "short_name": "Java 学习站",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f2ec",
+  "theme_color": "#e55b2d",
+  "icons": [{"src": "favicon.svg", "sizes": "any", "type": "image/svg+xml"}]
+}

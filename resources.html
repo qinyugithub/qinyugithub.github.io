@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <title>完整资料库 · Java 学习站</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="resources">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="topbar">
+    <a class="brand" href="index.html"><span class="brand-mark">J</span><span><strong>Java 学习站</strong><small>从入门到精通</small></span></a>
+    <nav class="topnav" aria-label="主导航"><a href="index.html">课程</a><a class="active" href="resources.html">资料库</a><a href="m/books/《Java从入门到精通(JDK17版)》_尚硅谷电子书.pdf" target="_blank">电子书</a></nav>
+    <button class="icon-button theme-toggle" aria-label="切换深浅色模式">◐</button>
+  </header>
+  <main id="main" class="resources-page">
+    <header class="resources-hero"><p class="kicker">COMPLETE ARCHIVE</p><h1>完整资料库</h1><p>保留原始目录与文件，统一检索 PDF、PPTX、XMind、代码、示例工程、图片和工具包。</p><div class="archive-stats"><span><b id="archive-files">—</b> 文件</span><span><b id="archive-size">—</b> 总大小</span><span><b>18</b> 课程章节</span></div></header>
+    <section class="resource-browser" aria-label="资料浏览器">
+      <div class="resource-toolbar">
+        <label class="resource-search"><span>⌕</span><input id="resource-search" type="search" placeholder="搜索文件名、路径或类型…"></label>
+        <select id="resource-chapter" aria-label="按章节筛选"><option value="">全部章节</option></select>
+        <select id="resource-type" aria-label="按类型筛选"><option value="">全部类型</option></select>
+      </div>
+      <div class="resource-filter-row"><div id="resource-count">正在读取资料…</div><button id="clear-filters" type="button">清除筛选</button></div>
+      <div id="resource-list" class="resource-list" aria-live="polite"></div>
+      <button id="load-more-resources" class="button ghost load-more" type="button" hidden>显示更多</button>
+    </section>
+  </main>
+  <footer class="site-footer"><p>所有文件均来自原始学习资料目录</p><a href="index.html">返回课程地图</a></footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
